@@ -5,9 +5,27 @@ Assuming the data is in the text file TidyData.txt in the current working direct
 ```
         td <- read.table("TidyData.txt", header = T)
 ```
-this will produce a data.frame object with 180 rows (30 test subjects each with 6 activities) and 68 columns described below
+this will produce a data.frame object with 180 rows (30 test subjects each with 6 activities) and 68 columns described below.
+
+## Data Reduction
+
+### Input Data
+Each record in the input data set represents an activity performed by a test subject.  There are 30 total test subjects performing any of six activities. Each record is a vector of 561 observations of gyroscopic and accelerometer measurements and descriptive information (e.g. mean, standard deviation, max, min, kurtosis, etc) on the measurements. The elements of the observation vector are called "Features" in the input data set.  A given test subject may perform a given activity on multiple occasions, producing a dataset (combined across the test and training data) of over ten thousand records.
+
+### Output Data and Reduction
+The requirements of this assignment called for extracting the mean and standard deviation measurements from the 10000+ input records and calculating and returning the average (mean) for each combination of test subject and activity.  The resulting (tidy) data set contains 30x6=180 records.
+
+Within the Features of the observation vector, 66 of the 561 were observations of the mean or standard deviation of a collection of measurements.  THese Features were the columns extracted from the input data and summarized in the output tidy data.  Thus the resulting tidy data frame contains 68 columns: the first two identify the test subject and activity, the remaining 66 are the mean and standard deviations variables.
+
+The data was reduced by calculating the mean value across the instances of (subject, activity) pairs.  In R, the following code accomplished the data reduction:
+
+```
+reduced_data <- aggregate(x=merged_data, by=list(merged_data$subject, merged_data$actvity), mean)
+```
 
 ## Column Names
+
+The table below presents the columns that appear in the tidy dataset produced by this code.
 
 Column Number | Column Name | Meaning
 ------------- | ----------- | -------

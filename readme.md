@@ -27,9 +27,10 @@ The code assumes the source dataset zipfile has been downloaded and unzipped int
 To load the code into the current workspace:
 
 ```
-        source('run_analysis.R')
-        source('getHARdata.R')
-        source('fname2colname.R')
+        library(devtools)
+        source_url('https://raw.githubusercontent.com/kevinmcmanus/HumanActivityRecognition/master/run_analysis.R')
+        source_url('https://raw.githubusercontent.com/kevinmcmanus/HumanActivityRecognition/master/getHARdata.R')
+        source_url('https://raw.githubusercontent.com/kevinmcmanus/HumanActivityRecognition/master/fname2colname.R')
 ```
 
 ## Implementation
